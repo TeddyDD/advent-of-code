@@ -5,21 +5,20 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 )
 
 func fuel(mass int) int {
-	return int((math.Floor(float64(mass) / 3)) - 2)
+	return (mass / 3) - 2
 }
 
 func stageFuel(mass int) int {
-	initial := fuel(mass)
-	for add := fuel(initial); add > 0; add = fuel(add) {
-		initial += add
+	res := fuel(mass)
+	for add := fuel(res); add > 0; add = fuel(add) {
+		res += add
 	}
-	return initial
+	return res
 }
 
 func main() {
