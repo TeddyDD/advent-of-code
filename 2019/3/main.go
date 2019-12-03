@@ -1,5 +1,7 @@
 package main
 
+// only 1st part cuz I'm tired today
+
 import (
 	"fmt"
 	"io/ioutil"
