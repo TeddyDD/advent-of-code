@@ -112,7 +112,7 @@ def decode_output(out, mapping):
 
 def process_line(line):
     input = parse_input(line)
-    print(input)
+    # print(input)
     output = input["output"]
     mapping = decode(input)
     res = int("".join(map(str, decode_output(output, mapping))))
