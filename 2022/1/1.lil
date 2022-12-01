@@ -1,0 +1,6 @@
+# Lil: https://beyondloom.com/decker/lil.html
+# Better solution from razetime: https://github.com/razetime/aoc/blob/main/22/01.lil
+i: "\n\n" split read["input"]
+i: each x in i sum "\n" split x end
+show[ max i]
+show[sum 3 take extract value orderby value desc from i]
