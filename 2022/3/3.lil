@@ -1,0 +1,30 @@
+on readInput f do "\n" split -1 drop read[f] end
+
+i: readInput["input"]
+s1: each x in i 
+    c:(count x) / 2 
+    (c take x),c drop x  
+end
+
+on common a b do
+    extract first value by value from (table a) join (table b)
+end
+
+on alphabet fmt do
+    each l in (list "%a") format (97 + range 26)
+        fmt format l
+    end
+end
+
+lscore: alphabet["%s"] dict 1 + range 27
+uscore: alphabet["%u"] dict 27 + range 27
+score: lscore,uscore
+
+s1: sum each x in s1 score[common[x[0] x[1]]] end
+show[s1]
+
+s2: extract list value by floor index/3 from i
+s2: sum each x in s2
+    score[common[common[x[0] x[1]] common[x[1] x[2]]]]
+end
+show[s2]
