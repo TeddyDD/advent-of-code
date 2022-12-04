@@ -1,0 +1,16 @@
+on readInput f do "\n" split -1 drop read[f] end
+
+i: "%i-%i,%i-%i" parse readInput["input"]
+
+on fullyContains al ah bl bh do
+	((al < bl) | al = bl) & ((ah > bh) | ah = bh)
+end
+
+on mr a b do
+	a + range 1+b-a
+end
+
+s1: each x in i fullyContains[x[0] x[1] x[2] x[3]] | fullyContains[x[2] x[3] x[0] x[1]] end
+s2: each x in i if mr[x[0] x[1]] take mr[x[2] x[3]] 1 else 0 end end
+show[sum s1]
+show[sum s2]
