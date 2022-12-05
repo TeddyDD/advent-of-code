@@ -1,0 +1,35 @@
+i: "\n\n" split -1 drop read["input"]
+prog: "move %i from %i to %i" parse "\n" split i[1]
+state: flip each x in -1 drop "\n" split i[0]
+    "[%s]" parse extract -1 drop "" fuse list value by floor index/4 from x 
+end
+state: each x in state "" drop x end
+state2: state
+
+on rev x do
+	(),extract value orderby index desc from x
+end
+
+on next prog state do
+	src: prog[0] take state[prog[1]-1]
+	state[prog[1]-1]: prog[0] drop state[prog[1]-1]
+	state[prog[2]-1]: rev[src],state[prog[2]-1]
+	state
+end
+
+on result state do
+    "" fuse each x in state first x end
+end
+
+each x in prog do
+	state: next[x state]
+end
+s1: result[state]
+show[s1]
+
+on rev x do x end
+each x in prog do
+	state2: next[x state2]
+end
+s2: result[state2]
+show[s2]
