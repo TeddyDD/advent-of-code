@@ -1,0 +1,26 @@
+b: -1 drop read["input"]
+
+on allDifferent lst do
+    (count lst) = count lst dict lst
+end
+
+on allRanges buffer n do
+	c: (count buffer) - n
+	(range c) join n + range c
+end
+
+# show[count b]
+# show[allRanges[b 4]]
+
+on solve n do
+    first "0" drop each x in allRanges[b n]
+        if allDifferent[b @ (x[0] + range x[1] - x[0])] 
+            x[1] 
+        end
+    end
+end
+
+s1: solve[4]
+s2: solve[14]
+show[s1]
+show[s2]
